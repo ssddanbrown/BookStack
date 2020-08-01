@@ -7,7 +7,9 @@ use BookStack\Api\ApiTokenGuard;
 use BookStack\Auth\Access\ExternalBaseUserProvider;
 use BookStack\Auth\Access\Guards\LdapSessionGuard;
 use BookStack\Auth\Access\Guards\Saml2SessionGuard;
+use BookStack\Auth\Access\Guards\OpenIdSessionGuard;
 use BookStack\Auth\Access\LdapService;
+use BookStack\Auth\Access\OpenIdService;
 use BookStack\Auth\Access\RegistrationService;
 use BookStack\Auth\UserRepo;
 use Illuminate\Support\ServiceProvider;
@@ -42,6 +44,17 @@ class AuthServiceProvider extends ServiceProvider
                 $name,
                 $provider,
                 $this->app['session.store'],
+                $app[RegistrationService::class]
+            );
+        });
+
+        Auth::extend('openid-session', function ($app, $name, array $config) {
+            $provider = Auth::createUserProvider($config['provider']);
+            return new OpenIdSessionGuard(
+                $name,
+                $provider,
+                $this->app['session.store'],
+                $app[OpenIdService::class],
                 $app[RegistrationService::class]
             );
         });

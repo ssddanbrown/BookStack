@@ -145,7 +145,7 @@ class LoginController extends Controller
     {
         // Authenticate on all session guards if a likely admin
         if ($user->can('users-manage') && $user->can('user-roles-manage')) {
-            $guards = ['standard', 'ldap', 'saml2'];
+            $guards = ['standard', 'ldap', 'saml2', 'openid'];
             foreach ($guards as $guard) {
                 auth($guard)->login($user);
             }
@@ -195,5 +195,4 @@ class LoginController extends Controller
 
         return redirect('/login');
     }
-
 }

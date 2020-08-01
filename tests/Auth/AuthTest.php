@@ -398,6 +398,7 @@ class AuthTest extends BrowserKitTest
         $this->assertTrue(auth()->check());
         $this->assertTrue(auth('ldap')->check());
         $this->assertTrue(auth('saml2')->check());
+        $this->assertTrue(auth('openid')->check());
     }
 
     public function test_login_authenticates_nonadmins_on_default_guard_only()
@@ -410,6 +411,7 @@ class AuthTest extends BrowserKitTest
         $this->assertTrue(auth()->check());
         $this->assertFalse(auth('ldap')->check());
         $this->assertFalse(auth('saml2')->check());
+        $this->assertFalse(auth('openid')->check());
     }
 
     public function test_failed_logins_are_logged_when_message_configured()
