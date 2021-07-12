@@ -60,6 +60,7 @@ return [
     'no_activity' => 'Geen activiteit om weer te geven',
     'no_items' => 'Geen items beschikbaar',
     'back_to_top' => 'Terug naar boven',
+    'skip_to_main_content' => 'Direct naar de hoofdinhoud',
     'toggle_details' => 'Details weergeven',
     'toggle_thumbnails' => 'Thumbnails weergeven',
     'details' => 'Details',

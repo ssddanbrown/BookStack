@@ -60,6 +60,7 @@ return [
     'no_activity' => 'Nav skatāmu darbību',
     'no_items' => 'Vienumi nav pieejami',
     'back_to_top' => 'Uz augšu',
+    'skip_to_main_content' => 'Pāriet uz saturu',
     'toggle_details' => 'Rādīt aprakstu',
     'toggle_thumbnails' => 'Iezīmēt sīkatēlus',
     'details' => 'Sīkāka informācija',
