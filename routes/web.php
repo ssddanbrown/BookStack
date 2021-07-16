@@ -4,7 +4,7 @@ Route::get('/status', 'StatusController@show');
 Route::get('/robots.txt', 'HomeController@getRobots');
 
 // Authenticated routes...
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'mfa']], function () {
 
     // Secure images routing
     Route::get('/uploads/images/{path}', 'Images\ImageController@showImage')
@@ -223,6 +223,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/roles/{id}', 'RoleController@edit');
         Route::put('/roles/{id}', 'RoleController@update');
     });
+
+    // MFA Routes
+    Route::get('/mfa/setup', 'Auth\MfaController@setup');
+    Route::get('/mfa/totp-generate', 'Auth\MfaTotpController@generate');
+    Route::post('/mfa/totp-confirm', 'Auth\MfaTotpController@confirm');
+    Route::get('/mfa/backup-codes-generate', 'Auth\MfaBackupCodesController@generate');
+    Route::post('/mfa/backup-codes-confirm', 'Auth\MfaBackupCodesController@confirm');
+    Route::delete('/mfa/remove/{method}', 'Auth\MfaController@remove');
+    Route::get('/mfa/verify', 'Auth\MfaController@verify');
 });
 
 // Social auth routes
